@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="mobile_spa.css" />
+</head>
+<body>
+    <!-- #Start Pattern -->
+    <header class="header header--fixed" role="banner">
+      <!-- Logo -->
+      <h1 class="title"><a href="#logo">Tiddlyspace</a></h1>
+
+      <section id="menu" class="navigation off-canvas--hide" aria-hidden="false" role="navigation">
+        <span class="tiddler-close" aria-hidden="true">back</span>
+        <!-- should be a section? -->
+        <div id="tid-contents" class="tiddler"></div>
+      </section>
+    </header>
+    <!-- #End Pattern -->
+
+    <section role="main">
+        <ul class="tiddlers">
+            <script id="tiddler-info-template" type="text/x-handlebars-template">
+                <li data-friendly-uri="{{friendlyuri}}">
+                    <a class="usericon" href="{{useruri}}"><img src="{{usericon}}" alt="" /></a>
+                    <div>
+                        <h3>{{title}}</h3>
+                        <p class="space">in the <a href="{{spaceuri}}">{{space}}</a> space</p>
+                        <abbr class="timeago" title="{{date}}">{{date}}</abbr>
+                    </div>
+                </li>
+            </script>
+        </ul>
+    </section>
+
+    <script src="/bags/common/tiddlers/jquery.js"></script>
+    <script src="status.js"></script>
+    <script src="/bags/tapas_public/tiddlers/jquery.timeago.js"></script>
+    <script src="http://tiddlyspace.com/bags/blog_public/tiddlers/handlebars.js"></script>
+    <script src="http://tiddlyspace.com/bags/tsjs_public/tiddlers/_ts.js"></script>
+    <script src="mobile_spa.js"></script>
+</body>
+</html>
