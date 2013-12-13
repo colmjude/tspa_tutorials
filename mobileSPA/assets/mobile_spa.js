@@ -3,6 +3,9 @@
 
     $('body').addClass('js');
 
+    // using the data attr fetch the tiddler from the server
+    // render=1 is required so that the wikitext is compiled and 
+    // the HTML output is returned
     function fetchTiddler( el ) {
         var uri = $(el).data("friendly-uri");
         $.ajax({
@@ -18,8 +21,9 @@
     $(function() {
         var hostname = window.tiddlyweb.status.server_host.host;
         var sourceURI = '/search?q=;sort=-modified;limit=10';
-        var tid_tmpl = Handlebars.compile( $("#tiddler-info-template").html() );
         var $container = $(".tiddlers");
+        // we are using handlebars as the templating engine
+        var tid_tmpl = Handlebars.compile( $("#tiddler-info-template").html() );
 
         $.ajaxSetup({
             beforeSend: function(xhr) {
@@ -32,6 +36,9 @@
             url: sourceURI,
             success: function(tiddlers) {
                 $.each(tiddlers, function(index, tiddler) {
+                    // see https://github.com/colmjude/_ts.js
+                    // if you want to have a closer look at the _ts utility
+                    // library
                     var data = $.extend( tiddler, {
                         friendlyuri: _ts.friendlyURI( tiddler.uri ),
                         date: _ts.toDate( tiddler.modified ).toISOString(),
